@@ -38,7 +38,7 @@ namespace C_Sharp_Practice
         // Verifies if the user's operation request is a valid choice. If not, will continue to ask the user until they enter a valid input.
         public static string VerifyOperation (string math, bool status)
         {
-            string operation = "";
+            string operation = math;
             if (math != "Add" && math != "Subtract" && math != "Multiply" && math != "Divide")
             {
                 status = false;
