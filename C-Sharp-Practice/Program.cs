@@ -33,6 +33,7 @@ namespace C_Sharp_Practice
                     Divide(convertedNumber1, convertedNumber2);
                     break;
             }
+            Console.ReadLine();
         }
 
         // Verifies if the user's operation request is a valid choice. If not, will continue to ask the user until they enter a valid input.
