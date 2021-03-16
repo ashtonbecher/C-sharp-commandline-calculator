@@ -15,7 +15,7 @@ namespace C_Sharp_Practice
             string input2 = Console.ReadLine();
             int convertedNumber2 = VerifyUserInput(input2, status);
 
-            Console.WriteLine("What would you like to do?\nPlease type 'Add', 'Subtract', 'Multiply', or 'Divide'");
+            Console.WriteLine("What would you like to do?\nPlease type 'Add', 'Subtract', 'Multiply', 'Divide', or 'Modulus'");
             string operation = Console.ReadLine();
             operation = VerifyOperation(operation, status);
             switch (operation)
@@ -32,6 +32,9 @@ namespace C_Sharp_Practice
                 case "Divide":
                     Divide(convertedNumber1, convertedNumber2);
                     break;
+                case "Modulus":
+                    Modulus(convertedNumber1, convertedNumber2);
+                    break;
             }
             Console.ReadLine();
         }
@@ -40,14 +43,14 @@ namespace C_Sharp_Practice
         public static string VerifyOperation (string math, bool status)
         {
             string operation = math;
-            if (math != "Add" && math != "Subtract" && math != "Multiply" && math != "Divide")
+            if (math != "Add" && math != "Subtract" && math != "Multiply" && math != "Divide" && math != "Modulus")
             {
                 status = false;
                 while (status == false)
                 {
                     Console.WriteLine("Please enter a valid operation");
                     string fixedInput = Console.ReadLine();
-                    if (fixedInput == "Add" || fixedInput == "Subtract" || fixedInput == "Multiply" || fixedInput == "Divide")
+                    if (fixedInput == "Add" || fixedInput == "Subtract" || fixedInput == "Multiply" || fixedInput == "Divide" || fixedInput == "Modulus")
                     {
                         status = true;
                         operation = fixedInput;
@@ -87,21 +90,21 @@ namespace C_Sharp_Practice
         // Simple method to add two numbers and return the sum.
         public static void Add(int num1, int num2)
         {
-            int sum = num1 + num2;
+            double sum = num1 + num2;
             Console.WriteLine("The sum of " + num1 + " plus " + num2 + " is " + sum);
         }
 
         // Simple method to subtract two numbers and return the difference.
         public static void Subtract(int num1, int num2)
         {
-            int diff = num1 - num2;
+            double diff = num1 - num2;
             Console.WriteLine("The difference of " + num1 + " minus " + num2 + " is " + diff);
         }
 
         // Simple method to multiply two numbers and return the product.
         public static void Multiply(int num1, int num2)
         {
-            int product = num1 * num2;
+            double product = num1 * num2;
             Console.WriteLine("The product of " + num1 + " times " + num2 + " is " + product);
         }
 
@@ -110,6 +113,13 @@ namespace C_Sharp_Practice
         {
             double quotient = num1 / num2;
             Console.WriteLine("The quotient of " + num1 + " divided by " + num2 + " is " + quotient);
+        }
+
+        // Simple method to modulus two numbers and return the remainder.
+        public static void Modulus(int num1, int num2)
+        {
+            double remainder = num1 % num2;
+            Console.WriteLine("The remainder of " + num1 + " mod " + num2 + " is " + remainder);
         }
 
         // Verifies is the user's input is a number or not. Returns 'true' if it is a number, otherwise returns 'false'.
