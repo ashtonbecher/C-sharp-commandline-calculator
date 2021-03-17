@@ -134,7 +134,7 @@ namespace C_Sharp_Practice
         public static void Modulus(double num1, double num2)
         {
             double remainder = num1 % num2;
-            Console.WriteLine("The remainder of " + num1 + " mod " + num2 + " is " + remainder);
+            Console.WriteLine("The result of " + num1 + " mod " + num2 + " is " + remainder);
         }
 
         // Verifies is the user's input is a number or not. Returns 'true' if it is a number, otherwise returns 'false'.
