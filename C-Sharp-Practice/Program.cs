@@ -9,11 +9,11 @@ namespace C_Sharp_Practice
             bool status = true;
             Console.WriteLine("Please enter first number");
             string input1 = Console.ReadLine();
-            int convertedNumber1 = VerifyUserInput(input1, status);
+            double convertedNumber1 = VerifyUserInput(input1, status);
 
             Console.WriteLine("Please enter second number");
             string input2 = Console.ReadLine();
-            int convertedNumber2 = VerifyUserInput(input2, status);
+            double convertedNumber2 = VerifyUserInput(input2, status);
 
             Console.WriteLine("What would you like to do?\nPlease type 'Add', 'Subtract', 'Multiply', 'Divide', or 'Modulus'");
             string operation = Console.ReadLine();
@@ -30,6 +30,21 @@ namespace C_Sharp_Practice
                     Multiply(convertedNumber1, convertedNumber2);
                     break;
                 case "Divide":
+                    if (convertedNumber2 == 0)
+                    {
+                        status = false;
+                        while (status == false)
+                        {
+                            Console.WriteLine("Divide by zero error. Please enter a non-zero number");
+                            string newInput = Console.ReadLine();
+                            if (VerifyIsNumber(newInput) && Convert.ToDouble(newInput) != 0)
+                            {
+                                status = true;
+                                convertedNumber2 = Convert.ToDouble(newInput);
+                                break;
+                            }
+                        }
+                    }
                     Divide(convertedNumber1, convertedNumber2);
                     break;
                 case "Modulus":
@@ -62,9 +77,9 @@ namespace C_Sharp_Practice
         }
 
         // Takes user's input and verifies if it is a valid number. If it is not a valid number, will continue asking for a valid number.
-        public static int VerifyUserInput (string input, bool status)
+        public static double VerifyUserInput (string input, bool status)
         {
-            int number = 0;
+            double number = 0;
             if (VerifyIsNumber(input) == false)
             {
                 status = false;
@@ -75,48 +90,48 @@ namespace C_Sharp_Practice
                     if (VerifyIsNumber(fixedInput))
                     {
                         status = true;
-                        number = Convert.ToInt32(fixedInput);
+                        number = Convert.ToDouble(fixedInput);
                         break;
                     }
                 }
             }
             else
             {
-                number = Convert.ToInt32(input);
+                number = Convert.ToDouble(input);
             }
             return number;
         }
 
         // Simple method to add two numbers and return the sum.
-        public static void Add(int num1, int num2)
+        public static void Add(double num1, double num2)
         {
             double sum = num1 + num2;
             Console.WriteLine("The sum of " + num1 + " plus " + num2 + " is " + sum);
         }
 
         // Simple method to subtract two numbers and return the difference.
-        public static void Subtract(int num1, int num2)
+        public static void Subtract(double num1, double num2)
         {
             double diff = num1 - num2;
             Console.WriteLine("The difference of " + num1 + " minus " + num2 + " is " + diff);
         }
 
         // Simple method to multiply two numbers and return the product.
-        public static void Multiply(int num1, int num2)
+        public static void Multiply(double num1, double num2)
         {
             double product = num1 * num2;
             Console.WriteLine("The product of " + num1 + " times " + num2 + " is " + product);
         }
 
         // Simple method to divide two numbers and return the quotient.
-        public static void Divide(int num1, int num2)
+        public static void Divide(double num1, double num2)
         {
             double quotient = num1 / num2;
             Console.WriteLine("The quotient of " + num1 + " divided by " + num2 + " is " + quotient);
         }
 
         // Simple method to modulus two numbers and return the remainder.
-        public static void Modulus(int num1, int num2)
+        public static void Modulus(double num1, double num2)
         {
             double remainder = num1 % num2;
             Console.WriteLine("The remainder of " + num1 + " mod " + num2 + " is " + remainder);
@@ -125,8 +140,8 @@ namespace C_Sharp_Practice
         // Verifies is the user's input is a number or not. Returns 'true' if it is a number, otherwise returns 'false'.
         public static bool VerifyIsNumber(string input)
         {
-            int myInt;
-            bool isNumeric = int.TryParse(input, out myInt);
+            double myNumber;
+            bool isNumeric = double.TryParse(input, out myNumber);
             return isNumeric;
         }
     }
